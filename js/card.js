@@ -29,10 +29,9 @@ export class Card {
             let cards = this.game.cardCouple
             this.game.cardCouple = []
             this.game.nbTry++
-            if (match) {
+            if (match)
                 this.game.nbFound++
-
-            } else {
+            else {
                 this.game.isFrozen = true
                 sleep(2000).then(() => {
                     cards[0].unSelect()

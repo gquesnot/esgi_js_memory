@@ -15,7 +15,7 @@ export class Memory{
     ];
 
     cards = {}
-    cardCouple = [];
+    cardCouple = [];// [Card, Card]
     nbTry = 0
     nbFound = 0
     isFrozen = false
@@ -24,13 +24,12 @@ export class Memory{
         this.htmlCards = document.querySelectorAll('li')
         this.htmlResult = document.querySelector(".result")
         this.htmlResult.addEventListener("dblclick", ()=>{this.reset()})
-        this.loadImgs()
+        this.loadImages()
         this.newGame()
-
     }
 
 
-    loadImgs(){
+    loadImages(){
         let body = document.querySelector("body")
 
         for (let cardName of this.cardsName){
@@ -41,7 +40,6 @@ export class Memory{
 
         }
     }
-
 
 
     getShuffledArray(){
