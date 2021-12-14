@@ -56,8 +56,4 @@ export class Card {
             this.htmlElem.style.background = this.htmlElem.classList.contains("flipped") ? "url(img/persos/" + this.name + ".jpeg) center / cover no-repeat" : ""
         })
     }
-
-    reset() {
-        this.flipCard()
-    }
 }

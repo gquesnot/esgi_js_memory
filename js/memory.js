@@ -83,7 +83,7 @@ export class Memory{
     reset(){
         this.htmlResult.style.top = "-100%"
         for (let [idx, card] of Object.entries(this.cards)) {
-            card.reset()
+            card.flipCard()
         }
         this.newGame()
     }
