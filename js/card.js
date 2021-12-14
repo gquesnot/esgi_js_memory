@@ -15,7 +15,7 @@ export class Card {
 
 
     select() {
-        if (this.game.freezeGame || this.htmlElem.classList.contains("flipped") || this.selected)
+        if (this.game.isFrozen || this.htmlElem.classList.contains("flipped") || this.selected)
             return
 
         this.flipCard()
@@ -28,16 +28,16 @@ export class Card {
             let match = this.game.cardCouple[0].name === this.game.cardCouple[1].name
             let cards = this.game.cardCouple
             this.game.cardCouple = []
-            this.game.try++
+            this.game.nbTry++
             if (match) {
-                this.game.found++
+                this.game.nbFound++
 
             } else {
-                this.game.freezeGame = true
+                this.game.isFrozen = true
                 sleep(2000).then(() => {
                     cards[0].unSelect()
                     cards[1].unSelect()
-                    this.game.freezeGame = false
+                    this.game.isFrozen = false
                 })
             }
             this.game.checkWin()

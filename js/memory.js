@@ -16,14 +16,14 @@ export class Memory{
 
     cards = {}
     cardCouple = [];
-    try = 0
-    found = 0
-    freezeGame = false
+    nbTry = 0
+    nbFound = 0
+    isFrozen = false
     constructor() {
 
         this.htmlCards = document.querySelectorAll('li')
-        this.result = document.querySelector(".result")
-        this.result.addEventListener("dblclick", ()=>{this.reset()})
+        this.htmlResult = document.querySelector(".result")
+        this.htmlResult.addEventListener("dblclick", ()=>{this.reset()})
         this.loadImgs()
         this.newGame()
 
@@ -60,18 +60,18 @@ export class Memory{
 
 
     checkWin(){
-        if (this.found === this.cardsName.length){
-            document.querySelector(".result strong").innerHTML = this.try.toString()
-            this.result.style.top = "0%"
+        if (this.nbFound === this.cardsName.length){
+            document.querySelector(".result strong").innerHTML = this.nbTry.toString()
+            this.htmlResult.style.top = "0%"
         }
     }
 
     newGame(){
         this.cards = {};
         this.cardCouple = [];
-        this.try = 0
-        this.found = 0
-        this.freezeGame = false
+        this.nbTry = 0
+        this.nbFound = 0
+        this.isFrozen = false
 
         let ids = this.getShuffledArray()
         for (let i  = 0; i< 20;i++) {
@@ -83,7 +83,7 @@ export class Memory{
     }
 
     reset(){
-        this.result.style.top = "-100%"
+        this.htmlResult.style.top = "-100%"
         for (let [idx, card] of Object.entries(this.cards)) {
             card.reset()
         }
