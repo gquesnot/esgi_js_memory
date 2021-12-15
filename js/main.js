@@ -2,5 +2,5 @@
 
 import {Memory} from "./memory.js";
 
-
+//init Memory
 let memory = new Memory();

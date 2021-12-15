@@ -20,11 +20,13 @@ export class Memory{
     cardCouple = [];// [Card, Card]
     nbTry = 0;
     nbFound = 0;
-    isFrozen = false;
+    _isFrozen = false;
     constructor() {
-
+        // init html elements
         this.htmlCards = document.querySelectorAll('li');
         this.htmlResult = document.querySelector(".result");
+
+        //dblClick on result = reset
         this.htmlResult.addEventListener("dblclick", ()=>{this.reset()});
         this.loadImages();
         this.newGame();
@@ -71,12 +73,13 @@ export class Memory{
         this.cardCouple = [];
         this.nbTry = 0;
         this.nbFound = 0;
-        this.isFrozen = false;
+        this._isFrozen = false;
 
+        // array of unique id from 0 to 20 shuffled
         let ids = this.getShuffledArray();
         for (let i  = 0; i< 20;i++) {
-            // 0 <= id <= 20
             let id = ids[i];
+            //0,0,1,1,etc
             let cardName = this.cardsName[Math.floor(i/2)];
             this.cards[id] = new Card(this, cardName,this.htmlCards[id], id);
         }
