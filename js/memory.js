@@ -14,6 +14,8 @@ export class Memory{
         "merry",
         "pipin",
         "sam",
+        "saroumane",
+        "sauron",
     ];
 
     cards = {};
@@ -21,14 +23,22 @@ export class Memory{
     nbTry = 0;
     nbFound = 0;
     _isFrozen = false;
-    constructor() {
+
+    constructor(maxCards = null) {
+        // to add new card add pic in img/persos and name in cardsName
+        this.maxCards = maxCards != null && maxCards <= this.cardsName.length ?  maxCards : this.cardsName.length;
+        // laod html
+        this.loadImages();
+        this.generateLi();
+
+
         // init html elements
         this.htmlCards = document.querySelectorAll('li');
         this.htmlResult = document.querySelector(".result");
 
         //dblClick on result = reset
         this.htmlResult.addEventListener("dblclick", ()=>{this.reset()});
-        this.loadImages();
+
         this.newGame();
     }
 
@@ -47,7 +57,7 @@ export class Memory{
 
 
     getShuffledArray(){
-        let ids = Array.from({length: 20}, (_, index) => index);
+        let ids = Array.from({length: this.maxCards * 2}, (_, index) => index);
         let i = ids.length, j, temp;
         if ( i === 0 ) return this;
         while ( --i ) {
@@ -62,7 +72,7 @@ export class Memory{
 
 
     checkWin(){
-        if (this.nbFound === this.cardsName.length){
+        if (this.nbFound === this.maxCards){
             document.querySelector(".result strong").innerHTML = this.nbTry.toString();
             this.htmlResult.style.top = "0%";
         }
@@ -75,9 +85,9 @@ export class Memory{
         this.nbFound = 0;
         this._isFrozen = false;
 
-        // array of unique id from 0 to 20 shuffled
+        // array of unique id from 0 to maxCards*2 shuffled
         let ids = this.getShuffledArray();
-        for (let i  = 0; i< 20;i++) {
+        for (let i  = 0; i< ids.length;i++) {
             let id = ids[i];
             //0,0,1,1,etc
             let cardName = this.cardsName[Math.floor(i/2)];
@@ -93,4 +103,12 @@ export class Memory{
         this.newGame();
     }
 
+    generateLi() {
+        let htmlCards = document.querySelector('#cards')
+        let res = "";
+        for (let i = 0; i < this.maxCards*2 ; i++){
+            res += "<li></li>"
+        }
+        htmlCards.innerHTML = res
+    }
 }
