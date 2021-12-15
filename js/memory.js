@@ -23,6 +23,7 @@ export class Memory{
     nbTry = 0;
     nbFound = 0;
     _isFrozen = false;
+    maxCards = 0;
 
     constructor(maxCards = null) {
         // to add new card add pic in img/persos and name in cardsName
