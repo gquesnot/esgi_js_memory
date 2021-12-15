@@ -1,6 +1,6 @@
-"use strict"
+"use strict";
 
 import {Memory} from "./memory.js";
 
 
-let memory = new Memory()
+let memory = new Memory();
