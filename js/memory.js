@@ -1,23 +1,9 @@
 "use strict";
 
 import {Card} from "./card.js";
+import {cardsName} from "./cards_name.js";
 
 export class Memory{
-    cardsName = [
-        "aragorn",
-        "boromir",
-        "frodon",
-        "gandalf",
-        "gimli",
-        "gollum",
-        "legolas",
-        "merry",
-        "pipin",
-        "sam",
-        "saroumane",
-        "sauron",
-    ];
-
     cards = {};
     cardCouple = [];// [Card, Card]
     nbTry = 0;
@@ -27,7 +13,7 @@ export class Memory{
 
     constructor(maxCards = null) {
         // to add new card add pic in img/persos and name in cardsName
-        this.maxCards = maxCards != null && maxCards <= this.cardsName.length ?  maxCards : this.cardsName.length;
+        this.maxCards = maxCards != null && maxCards <= cardsName.length ?  maxCards : cardsName.length;
         // laod html
         this.loadImages();
         this.generateLi();
@@ -47,7 +33,7 @@ export class Memory{
     loadImages(){
         let body = document.querySelector("body");
 
-        for (let cardName of this.cardsName){
+        for (let cardName of cardsName){
             let img = document.createElement("img");
             img.classList.add("hide");
             img.src = "img/persos/" + cardName + ".jpeg";
@@ -91,7 +77,7 @@ export class Memory{
         for (let i  = 0; i< ids.length;i++) {
             let id = ids[i];
             //0,0,1,1,etc
-            let cardName = this.cardsName[Math.floor(i/2)];
+            let cardName = cardsName[Math.floor(i/2)];
             this.cards[id] = new Card(this, cardName,this.htmlCards[id], id);
         }
     }
